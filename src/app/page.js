@@ -70,13 +70,13 @@ export default function Home() {
       })
     }
     else{
-      // const transfer = await hive.broadcast.transfer(
-      //   privateKey,
-      //   sender,
-      //   username,
-      //   "0.001 HIVE",
-      //   "Support DeFi on Hive! Your vote counts, vote now - https://peakd.com/me/proposals/291"
-      // );
+      const transfer = await hive.broadcast.transfer(
+        privateKey,
+        sender,
+        username,
+        "0.001 HIVE",
+        "Support DeFi on Hive! Your vote counts, vote now - https://peakd.com/me/proposals/291"
+      );
       updateTransfers({
         username,
         status: 'Sent',
