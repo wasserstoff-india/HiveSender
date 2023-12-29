@@ -8,6 +8,7 @@ export default function Home() {
   const [transfers, setTransfers] = useState([]);
   const [sender, setSender] = useState('');
   const [privateKey, setPrivateKey] = useState('');
+  const [memo, setMemo] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
 
   const updateTransfers = (newTransfer) => {
@@ -75,7 +76,7 @@ export default function Home() {
         sender,
         username,
         "0.001 HIVE",
-        "Support DeFi on Hive! Your vote counts, vote now - https://peakd.com/me/proposals/291"
+        memo
       );
       updateTransfers({
         username,
@@ -113,6 +114,13 @@ export default function Home() {
           value={privateKey}
           onChange={(e) => setPrivateKey(e.target.value)}
           placeholder="Enter sender private key"
+        />
+        <label htmlFor="input">Enter Memo / Message</label>
+        <input
+          type="text"
+          value={memo}
+          onChange={(e) => setMemo(e.target.value)}
+          placeholder="Enter message"
         />
         <input
           type="file"
