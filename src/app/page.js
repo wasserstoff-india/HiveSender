@@ -11,18 +11,23 @@ export default function Home() {
   const [memo, setMemo] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
 
+  function sleep(milliseconds) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+  }
+
   const updateTransfers = (newTransfer) => {
     setTransfers((prevTransfers) => [...prevTransfers, newTransfer]);
   };
 
-  const processCSV = (data) => {
-    data.forEach(row => {
+  const processCSV = async (data) => {
+    for(let i=0;i<data.length;i++){
+      let row = data[i];
       if (row && row.length > 0) {
         const username = row[0];
         sendHive(username);
-        for(let i = 0; i < 10000000; i++);
+        await sleep(2000);
       }
-    });
+    };
   };
 
   const handleProcessFile = () => {
@@ -71,7 +76,7 @@ export default function Home() {
       })
     }
     else{
-      const transfer = await hive.broadcast.transfer(
+      await hive.broadcast.transfer(
         privateKey,
         sender,
         username,
